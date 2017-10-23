@@ -1,0 +1,8 @@
+{
+    "front": {
+        "gamepanel": {
+            "default_controller": "index",
+            "protected": 0
+        }
+    }
+}

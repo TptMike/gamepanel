@@ -1,0 +1,9 @@
+{
+	"topLevel": "gamepanel",
+	"pages": {
+		"gamepanel": {
+			"friendly": "",
+			"real": "app=gamepanel&module=gamepanel&controller=index"
+		}
+	}
+}
