@@ -152,5 +152,13 @@ class _settings extends \IPS\Dispatcher\Controller
 				
 		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsOverview();
 	}
+	/**
+	 * Name
+	 * @return string
+	 */
+	protected function _name()
+	{
+		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsName();
+	}
 	// Create new methods with the same name as the 'do' parameter which should execute it
 }

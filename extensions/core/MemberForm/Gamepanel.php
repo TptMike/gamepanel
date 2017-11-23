@@ -33,8 +33,8 @@ class _Gamepanel
 	{
 		return array(
 			'id'	=> array(
-				'title'		=> 'title',
-				'icon'		=> 'cog',
+				'title'		=> 'Whitelist',
+				'icon'		=> 'check',
 				'link'		=> \IPS\Http\Url::internal( "app=gamepanel&module=&controller=&do=&id={$member->member_id}" ),
 				'class'		=> ''
 			)
@@ -50,7 +50,11 @@ class _Gamepanel
 	 */
 	public function process( &$form, $member )
 	{		
-		$form->add( new \IPS\Helpers\Form\Text( 'example' ) );
+		$form->add( new \IPS\Helpers\Form\Text( 'Minecraft IGN' ) );
+		$form->add( new \IPS\Helpers\Form\Text( 'UUID' ) );
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Whitelist' ) );
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Build' ) );
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Dark Portal' ) );
 	}
 	
 	/**
