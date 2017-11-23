@@ -4,5 +4,11 @@
             "default_controller": "index",
             "protected": 0
         }
+    },
+    "admin": {
+        "gamepanel": {
+            "default_controller": "",
+            "protected": 0
+        }
     }
 }
