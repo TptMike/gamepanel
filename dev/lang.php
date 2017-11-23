@@ -8,5 +8,6 @@ $lang = array(
     'module__gamepanel_gamepanel' => "Gamepanel",
     'module__gamepanel_settings_blurb' => "Add your Minecraft IGN to fetch your UUID. This will synchronise your account with our server.",
     'gp_ign' => "Minecraft IGN",
-    'gp_uuid' => "Unique User ID"
+    'gp_uuid' => "Unique User ID",
+    'editname' => "Edit Name"
 );
