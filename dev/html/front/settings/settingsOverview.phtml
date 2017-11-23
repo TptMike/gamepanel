@@ -1,5 +1,20 @@
 <ips:template parameters="" />
-{template="pageHeader" group="global" app="core" params="\IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_settings'), \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_settings_blurb')"}
-<div class='ipsBox' style="padding:20px;">
-  SETTINGS
+{template="pageHeader" group="global" app="core" params="\IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview'), \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview_blurb')"}
+<div class='ipsColumns ipsColumns_collapsePhone'>
+	<div class='ipsColumn ipsColumn_fluid'>
+		<ul class='ipsDataList'>
+            <li class='ipsDataItem'>
+				<div class='ipsDataItem_main'>
+                    <h4 class='ipsDataItem_title'><strong>{lang="gp_ign"}</strong></h4><br>
+                    {member="name"}
+                </div>
+            </li>
+            <li class='ipsDataItem'>
+                <div class='ipsDataItem_main'>
+                    <h4 class='ipsDataItem_title'><strong>{lang="gp_uuid"}</strong></h4><br>
+                    <p>4bf59692892742dd8cf7c6648fe4b154</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

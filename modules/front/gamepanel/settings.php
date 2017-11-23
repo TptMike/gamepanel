@@ -49,8 +49,78 @@ class _settings extends \IPS\Dispatcher\Controller
 		/* Display */
 		\IPS\Output::i()->title = \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_settings');
 		\IPS\Output::i()->breadcrumb[] = array( NULL, \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_settings') );
+		if ( !\IPS\Request::i()->isAjax() )
+		{
+			if ( \IPS\Request::i()->service )
+			{
+				$area = "{$area}_" . \IPS\Request::i()->service;
+			}
+            
+            \IPS\Output::i()->cssFiles	= array_merge( \IPS\Output::i()->cssFiles, \IPS\Theme::i()->css( 'styles/settings.css' ) );
+            
+            if ( \IPS\Theme::i()->settings['responsive'] )
+            {
+                \IPS\Output::i()->cssFiles	= array_merge( \IPS\Output::i()->cssFiles, \IPS\Theme::i()->css( 'styles/settings_responsive.css' ) );
+            }
+            
+            if ( $output )
+            {
+				\IPS\Output::i()->output .= $this->_wrapOutputInTemplate( $area, $output );
+			}
+		}
+		elseif ( $output )
+		{
+			\IPS\Output::i()->output .= $output;
+		}
+		//\IPS\Output::i()->output = \IPS\Theme::i()->getTemplate( 'settings' )->index();
+	}
+
+/**
+	 * Wrap output in template
+	 *
+	 * @param	string	$area	Active area
+	 * @param	string	$output	Output
+	 * @return	string
+	 */
+	protected function _wrapOutputInTemplate( $area, $output )
+	{
+		/* What can we do? */
+		$canChangeEmail = FALSE;
+		$canChangePassword = FALSE;
+		$canChangeUsername = FALSE;
+		$canConfigureMfa = FALSE;
+		foreach ( \IPS\Login::handlers( TRUE ) as $k => $handler )
+		{
+			if ( \IPS\Member::loggedIn()->group['g_dname_changes'] and $handler->canChange( 'username', \IPS\Member::loggedIn() ) )
+			{
+				$canChangeUsername = TRUE;
+			}
+			if ( $handler->canChange( 'email', \IPS\Member::loggedIn() ) )
+			{
+				$canChangeEmail = TRUE;
+			}
+			if ( $handler->canChange( 'password', \IPS\Member::loggedIn() ) )
+			{
+				$canChangePassword = TRUE;
+			}
+		}
+		foreach ( \IPS\MFA\MFAHandler::handlers() as $handler )
+		{
+			if ( $handler->isEnabled() and $handler->memberCanUseHandler( \IPS\Member::loggedIn() ) )
+			{
+				$canConfigureMfa = TRUE;
+				break;
+			}
+		}
+
+		$sigLimits = explode( ":", \IPS\Member::loggedIn()->group['g_signature_limits'] );
+		$canChangeSignature = (bool) ( \IPS\Settings::i()->signatures_enabled && !$sigLimits[0]	);
+				
+		/* Add sync services */
+		$services = \IPS\core\ProfileSync\ProfileSyncAbstract::services();
 		
-		\IPS\Output::i()->output = \IPS\Theme::i()->getTemplate( 'settings' )->index();
+		/* Return */
+		return \IPS\Theme::i()->getTemplate( 'settings' )->settings( $area, $output, $canChangeEmail, $canChangePassword, $canChangeUsername, $canChangeSignature, $services, $canConfigureMfa );
 	}
 
 		/**

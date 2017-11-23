@@ -1,4 +1,4 @@
-<ips:template parameters="" />
+<ips:template parameters="$tab, $output" />
 <div class='ipsBox ipsBox_transparent ipsAreaBackground' id='elSettingsTabs' data-ipsTabBar data-ipsTabBar-contentArea='#elProfileTabContent' data-ipsTabBar-itemSelector='.ipsSideMenu_item' data-ipsTabBar-activeClass='ipsSideMenu_itemActive'>
 	<div class='ipsColumns ipsColumns_collapsePhone ipsColumns_bothSpacing'>
 		<div class='ipsColumn ipsColumn_wide'>
@@ -11,7 +11,7 @@
 				<ul class="ipsSideMenu_list">
 					<li>
 						<a href='{url="app=gamepanel&module=settings&controller=settings" seoTemplate="settings"}' id='setting_overview' class='ipsType_normal ipsSideMenu_item {{if $tab === 'overview'}}ipsSideMenu_itemActive{{endif}}' title="{lang="overview"}" role="tab" aria-selected="{{if $tab === 'overview'}}true{{else}}false{{endif}}">
-							<i class='fa fa-tachometer'></i> {lang="overview"}
+							<i class='fa fa-cog'></i> {lang="overview"}
 						</a>
 					</li>
 				</ul>
@@ -26,3 +26,4 @@
 		</div>
 	</div>
 </div>
+<p>GPanel - (c) 2017 TptMike (Faceman)</p>
