@@ -44,6 +44,20 @@
                         "zerofill": false,
                         "auto_increment": false,
                         "binary": false
+                    },
+                    "member_id": {
+                        "name": "member_id",
+                        "type": "BIGINT",
+                        "length": null,
+                        "decimals": null,
+                        "values": null,
+                        "allow_null": true,
+                        "default": null,
+                        "comment": "user id",
+                        "unsigned": true,
+                        "zerofill": false,
+                        "auto_increment": false,
+                        "binary": false
                     }
                 },
                 "indexes": {

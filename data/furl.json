@@ -10,7 +10,7 @@
 			"real": "app=gamepanel&module=gamepanel&controller=settings"
 		},
 		"settings_name": {
-			"friendly": "gamepanel/settings/editname",
+			"friendly": "gamepanel/settings/name",
 			"real": "app=gamepanel&module=gamepanel&controller=settings&area=name"
 		}
 	}

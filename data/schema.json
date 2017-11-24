@@ -3,58 +3,75 @@
         "name": "gamepanel_players",
         "columns": {
             "id": {
+                "allow_null": false,
+                "auto_increment": true,
+                "binary": false,
+                "comment": "ID Number",
+                "decimals": null,
+                "default": null,
+                "length": 20,
                 "name": "id",
                 "type": "BIGINT",
-                "length": "20",
                 "unsigned": true,
-                "zerofill": false,
-                "binary": false,
-                "allow_null": false,
-                "default": null,
-                "auto_increment": true,
-                "comment": "ID Number"
+                "values": [],
+                "zerofill": false
             },
             "ign": {
+                "allow_null": true,
+                "auto_increment": false,
+                "binary": false,
+                "comment": "In-game Name",
+                "decimals": null,
+                "default": null,
+                "length": 60,
                 "name": "ign",
                 "type": "VARCHAR",
-                "length": 60,
-                "decimals": null,
-                "values": null,
-                "allow_null": true,
-                "default": null,
-                "comment": "In-game Name",
                 "unsigned": false,
-                "zerofill": false,
-                "auto_increment": false,
-                "binary": false
+                "values": [],
+                "zerofill": false
             },
             "uuid": {
+                "allow_null": true,
+                "auto_increment": false,
+                "binary": false,
+                "comment": "Player unique user id",
+                "decimals": null,
+                "default": null,
+                "length": 60,
                 "name": "uuid",
                 "type": "VARCHAR",
-                "length": 60,
-                "decimals": null,
-                "values": null,
-                "allow_null": true,
-                "default": null,
-                "comment": "Player unique user id",
                 "unsigned": false,
-                "zerofill": false,
+                "values": [],
+                "zerofill": false
+            },
+            "member_id": {
+                "allow_null": true,
                 "auto_increment": false,
-                "binary": false
+                "binary": false,
+                "comment": "user id",
+                "decimals": null,
+                "default": null,
+                "length": 20,
+                "name": "member_id",
+                "type": "BIGINT",
+                "unsigned": true,
+                "values": [],
+                "zerofill": false
             }
         },
         "indexes": {
             "PRIMARY": {
                 "type": "primary",
                 "name": "PRIMARY",
-                "columns": [
-                    "id"
-                ],
                 "length": [
                     null
+                ],
+                "columns": [
+                    "id"
                 ]
             }
         },
-        "comment": ""
+        "collation": "utf8mb4_unicode_ci",
+        "engine": "InnoDB"
     }
 }
