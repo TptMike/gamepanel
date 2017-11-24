@@ -161,7 +161,7 @@ class _settings extends \IPS\Dispatcher\Controller
 		/* Build form */
 		$form = new \IPS\Helpers\Form;
 		$form->add( new \IPS\Helpers\Form\Text( 'username', NULL, TRUE, array( 'accountUsername' => TRUE ) ) );
-		
+
 		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsName($form, FALSE);
 	}
 	// Create new methods with the same name as the 'do' parameter which should execute it
