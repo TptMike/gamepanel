@@ -1,4 +1,4 @@
-<ips:template parameters="" />
+<ips:template parameters="$player" />
 {template="pageHeader" group="global" app="core" params="\IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview'), \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview_blurb')"}
 <div class='ipsColumns ipsColumns_collapsePhone'>
 	<div class='ipsColumn ipsColumn_fluid'>
@@ -6,7 +6,7 @@
             <li class='ipsDataItem'>
 				<div class='ipsDataItem_main'>
                     <h4 class='ipsDataItem_title'><strong>{lang="gp_ign"}</strong></h4><br>
-                    {member="name"}
+                    {$player->ign}
                 </div>
             </li>
             <li class='ipsDataItem'>

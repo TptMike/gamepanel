@@ -131,6 +131,28 @@ class _settings extends \IPS\Dispatcher\Controller
 	protected function _overview()
 	{
 		$services = array();
+		$row = NULL;
+		
+		//Load player data
+		try
+		{
+			$row = \IPS\Db::i()->select("*", "gamepanel_players",array('member_id=?', \IPS\Member::loggedIn()->member_id))->first();
+			
+		}
+		catch(\UnderFlowException $e)
+		{
+			//!?
+		}
+		//Does it exist?
+		if($row == NULL || $row == "")
+		{
+			$player = new \IPS\gamepanel\Player;
+			$player['ign'] = "";
+		}
+		else
+		{
+			$player = \IPS\gamepanel\Player::load($row['id']);
+		}
 
 		foreach ( \IPS\core\ProfileSync\ProfileSyncAbstract::services() as $key => $class )
 		{
@@ -150,7 +172,7 @@ class _settings extends \IPS\Dispatcher\Controller
 			}
 		}
 				
-		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsOverview();
+		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsOverview($player);
 	}
 	/**
 	 * Name
@@ -188,10 +210,10 @@ class _settings extends \IPS\Dispatcher\Controller
 			$player->ign = $values['gp_ign'];
 			$player->save();
 			//We're done (?)
-			\IPS\Output::i()->redirect( \IPS\Http\Url::internal( 'app=gamepanel&module=gamepanel&controller=settings&area=name', 'front', 'settings' ));			
+			\IPS\Output::i()->redirect( \IPS\Http\Url::internal( 'app=gamepanel&module=gamepanel&controller=settings', 'front', 'settings' ));			
 		}
 
-		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsName($form, FALSE);
+		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsName($form, $player);
 	}
 	// Create new methods with the same name as the 'do' parameter which should execute it
 }
