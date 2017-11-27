@@ -158,9 +158,38 @@ class _settings extends \IPS\Dispatcher\Controller
 	 */
 	protected function _name()
 	{
+		$row = NULL;
+		//$player = \IPS\Gamepanel::load();
+
+		//Load player data
+		try
+		{
+			$row = \IPS\Db::i()->select("*", "gamepanel_players",array('member_id=?', \IPS\Member::loggedIn()->member_id))->first();
+		}
+		catch(\UnderFlowException $e)
+		{
+			//!?
+		}
+		//Does it exist?
+		if($row == NULL || $row == "")
+		{
+			//nope, add to db
+			$row = \IPS\Db::i()->insert('gamepanel_players', array('ign' => NULL, 'uuid' => NULL, 'member_id' => \IPS\Member::loggedIn()->member_id));
+		}
+
+		$player = \IPS\gamepanel\Player::load(8);
 		/* Build form */
 		$form = new \IPS\Helpers\Form;
-		$form->add( new \IPS\Helpers\Form\Text( 'username', NULL, TRUE, array( 'accountUsername' => TRUE ) ) );
+		$form->add( new \IPS\Helpers\Form\Text( 'gp_ign', $player->ign, TRUE));
+
+		/* Handle Submissions */
+		if ( $values = $form->values() )
+		{
+			$player->ign = $values['gp_ign'];
+			$player->save();
+			//We're done (?)
+			\IPS\Output::i()->redirect( \IPS\Http\Url::internal( 'app=gamepanel&module=gamepanel&controller=settings&area=name', 'front', 'settings' ));			
+		}
 
 		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsName($form, FALSE);
 	}

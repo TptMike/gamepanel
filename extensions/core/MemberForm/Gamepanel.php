@@ -50,9 +50,13 @@ class _Gamepanel
 	 */
 	public function process( &$form, $member )
 	{		
+		$form->addHeader("Player Information");
 		$form->add( new \IPS\Helpers\Form\Text( 'Minecraft IGN' ) );
 		$form->add( new \IPS\Helpers\Form\Text( 'UUID' ) );
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Whitelist' ) );
+		$form->addHeader("Whitelist");
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Main' ) );
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Test' ) );
+		$form->add( new \IPS\Helpers\Form\YesNo( 'Games' ) );
 		$form->add( new \IPS\Helpers\Form\YesNo( 'Build' ) );
 		$form->add( new \IPS\Helpers\Form\YesNo( 'Dark Portal' ) );
 	}
