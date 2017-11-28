@@ -113,8 +113,8 @@ class _MojangAPI
     public static function isValidUsername($string)
     {
         return is_string($string)
-            and strlen($string) >= 2
-            and strlen($string) <= 16
+            and mb_strlen($string) >= 2
+            and mb_strlen($string) <= 16
             and ctype_alnum(str_replace('_', '', $string));
     }
 
@@ -139,7 +139,7 @@ class _MojangAPI
     {
         if (is_string($uuid)) {
             $minified = str_replace('-', '', $uuid);
-            if (strlen($minified) === 32) {
+            if (mb_strlen($minified) === 32) {
                 return $minified;
             }
         }
@@ -708,7 +708,7 @@ class _MojangAPI
      * @param  string       $json
      * @return string|bool  json data, FALSE on failure
      */
-    private static function parseJson($json)
+    protected static function parseJson($json)
     {
         $data = json_decode($json, true);
         return empty($data) ? false : $data;
@@ -720,7 +720,7 @@ class _MojangAPI
      * @param  string        $url
      * @return string|false  content, FALSE on failure
      */
-    private static function fetch($url)
+    protected static function fetch($url)
     {
         if (function_exists('curl_init') and extension_loaded('curl')) {
             $ch = curl_init();
@@ -748,7 +748,7 @@ class _MojangAPI
      * @param  string       $url
      * @return array|false  json data, FALSE on failure
      */
-    private static function fetchJson($url)
+    protected function fetchJson($url)
     {
         $output = static::fetch($url);
 
@@ -770,7 +770,7 @@ class _MojangAPI
      * @param  string        $append, default is ''
      * @return string|false  data, FALSE on failure
      */
-    private static function queryWriteData($socket, $command, $append = '')
+    protected function queryWriteData($socket, $command, $append = '')
     {
         $command = pack('c*', 0xFE, 0xFD, $command, 0x01, 0x02, 0x03, 0x04) . $append;
         $length  = strlen($command);
@@ -793,7 +793,7 @@ class _MojangAPI
      * @param  socket    $socket
      * @return int|false var int, FALSE on failure
      */
-    private static function pingReadVarInt($socket)
+    protected function pingReadVarInt($socket)
     {
         $i = $j = 0;
 

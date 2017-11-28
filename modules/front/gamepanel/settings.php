@@ -208,7 +208,7 @@ class _settings extends \IPS\Dispatcher\Controller
 		if ( $values = $form->values() )
 		{
 			$player->ign = $values['gp_ign'];
-			$player->uuid = IPS\gamepanel\MojangAPI::getUuid($values['gp_ign']);
+			$player->uuid = \IPS\gamepanel\MojangAPI::getUuid($values['gp_ign']);
 			$player->save();
 			//We're done (?)
 			\IPS\Output::i()->redirect( \IPS\Http\Url::internal( 'app=gamepanel&module=gamepanel&controller=settings', 'front', 'settings' ));			
