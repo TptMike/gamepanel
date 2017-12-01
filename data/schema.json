@@ -73,5 +73,122 @@
         },
         "collation": "utf8mb4_unicode_ci",
         "engine": "InnoDB"
+    },
+    "gamepanel_access": {
+        "name": "gamepanel_access",
+        "columns": {
+            "id": {
+                "allow_null": false,
+                "auto_increment": true,
+                "binary": false,
+                "comment": "ID Number",
+                "decimals": null,
+                "default": null,
+                "length": 20,
+                "name": "id",
+                "type": "BIGINT",
+                "unsigned": true,
+                "values": [],
+                "zerofill": false
+            },
+            "uuid": {
+                "allow_null": false,
+                "auto_increment": false,
+                "binary": false,
+                "comment": "Minecraft UUID",
+                "decimals": null,
+                "default": "",
+                "length": 60,
+                "name": "uuid",
+                "type": "VARCHAR",
+                "unsigned": false,
+                "values": [],
+                "zerofill": false
+            },
+            "main": {
+                "name": "main",
+                "type": "TINYINT",
+                "length": 1,
+                "decimals": null,
+                "values": [],
+                "allow_null": false,
+                "default": "0",
+                "comment": "Access MAIN",
+                "unsigned": true,
+                "zerofill": false,
+                "auto_increment": false,
+                "binary": false
+            },
+            "test": {
+                "name": "test",
+                "type": "TINYINT",
+                "length": 1,
+                "decimals": null,
+                "values": [],
+                "allow_null": false,
+                "default": "0",
+                "comment": "Access Test",
+                "unsigned": true,
+                "zerofill": false,
+                "auto_increment": false,
+                "binary": false
+            },
+            "games": {
+                "name": "games",
+                "type": "TINYINT",
+                "length": 1,
+                "decimals": null,
+                "values": [],
+                "allow_null": false,
+                "default": "0",
+                "comment": "Access Games",
+                "unsigned": true,
+                "zerofill": false,
+                "auto_increment": false,
+                "binary": false
+            },
+            "build": {
+                "name": "build",
+                "type": "TINYINT",
+                "length": 1,
+                "decimals": null,
+                "values": [],
+                "allow_null": false,
+                "default": "0",
+                "comment": "Access Build",
+                "unsigned": true,
+                "zerofill": false,
+                "auto_increment": false,
+                "binary": false
+            },
+            "darkportal": {
+                "name": "darkportal",
+                "type": "TINYINT",
+                "length": 1,
+                "decimals": null,
+                "values": [],
+                "allow_null": false,
+                "default": "0",
+                "comment": "Access Dark Portal",
+                "unsigned": true,
+                "zerofill": false,
+                "auto_increment": false,
+                "binary": false
+            }
+        },
+        "indexes": {
+            "PRIMARY": {
+                "type": "primary",
+                "name": "PRIMARY",
+                "length": [
+                    null
+                ],
+                "columns": [
+                    "id"
+                ]
+            }
+        },
+        "collation": "utf8mb4_unicode_ci",
+        "engine": "InnoDB"
     }
 }

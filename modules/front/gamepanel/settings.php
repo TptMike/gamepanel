@@ -132,12 +132,11 @@ class _settings extends \IPS\Dispatcher\Controller
 	{
 		$services = array();
 		$row = NULL;
-		
+		$access = NULL;
 		//Load player data
 		try
 		{
 			$row = \IPS\Db::i()->select("*", "gamepanel_players",array('member_id=?', \IPS\Member::loggedIn()->member_id))->first();
-			
 		}
 		catch(\UnderFlowException $e)
 		{
@@ -152,6 +151,25 @@ class _settings extends \IPS\Dispatcher\Controller
 		else
 		{
 			$player = \IPS\gamepanel\Player::load($row['id']);
+		}
+
+		//Load player access
+		try
+		{
+			$access = \IPS\Db::i()->select("*", "gamepanel_access", array('uuid=?', $row['uuid']))->first();
+		}
+		catch(\UnderFlowException $e)
+		{
+			//!?
+		}
+		if($row['uuid'] != NULL && $access == null)
+		{
+			//default insert
+			$access = \IPS\Db::i()->insert('gamepanel_access', array('uuid' => $row['uuid'], 'main' => 0, 'test' => 0, 'games' => 0, 'build' => 0, 'darkportal' => 0));
+		}
+		else
+		{
+			$access = \IPS\gamepanel\Access::load($access['id']);
 		}
 
 		foreach ( \IPS\core\ProfileSync\ProfileSyncAbstract::services() as $key => $class )
@@ -172,7 +190,7 @@ class _settings extends \IPS\Dispatcher\Controller
 			}
 		}
 				
-		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsOverview($player);
+		return \IPS\Theme::i()->getTemplate( 'settings' )->settingsOverview($player, $access);
 	}
 	/**
 	 * Name

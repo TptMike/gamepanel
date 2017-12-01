@@ -2,6 +2,8 @@
 
 $lang = array(
     '__app_gamepanel'	=> "Gamepanel",
+    'r__console' => "Console",
+    'r__console_manage' => "Access Console",
     'module__gamepanel_settings'  => "Settings",
     'module__gamepanel_overview'  => "Overview",
     'module__gamepanel_overview_blurb' => "Your current IGN and UUID assocated with this name. This links your account with our server.",
@@ -13,5 +15,11 @@ $lang = array(
     'gp_ign' => "Minecraft IGN",
     'gp_uuid' => "Unique User ID",
     'gp_servers_access' => "Your server access",
-    'editname' => "Edit Name"
+    'editname' => "Edit Name",
+    'menutab__gamepanel' => "Gamepanel",
+    'menu__gamepanel_console' => "Console",
+    'menu__gamepanel_console_main' => "Main",
+    'menu__gamepanel_console_test' => "Test",
+    'menu__gamepanel_console_games' => "Games",
+    'menutab__gamepanel_icon' => "gamepad"
 );

@@ -1,1 +1,23 @@
-[]
+{
+    "gamepanel": [],
+    "console": {
+        "main": {
+            "tab": "gamepanel",
+            "controller": "main",
+            "do": "",
+            "restriction": "main_manage"
+        },
+        "test": {
+            "tab": "gamepanel",
+            "controller": "test",
+            "do": "",
+            "restriction": "test_manage"
+        },
+        "games": {
+            "tab": "gamepanel",
+            "controller": "games",
+            "do": "",
+            "restriction": "games_manage"
+        }
+    }
+}

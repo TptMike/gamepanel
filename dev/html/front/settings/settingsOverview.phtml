@@ -1,4 +1,4 @@
-<ips:template parameters="$player" />
+<ips:template parameters="$player, $access" />
 {template="pageHeader" group="global" app="core" params="\IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview'), \IPS\Member::loggedIn()->language()->addToStack('module__gamepanel_overview_blurb')"}
 <div class='ipsColumns ipsColumns_collapsePhone'>
 	<div class='ipsColumn ipsColumn_fluid'>
@@ -18,21 +18,51 @@
             <li class='ipsDataItem'>
                 <div class='ipsDataItem_main'>
                     <h4 class='ipsDataItem_title'><strong>{lang="gp_servers_access"}</strong></h4><br>
-                    <span class="ipsBadge ipsBadge_negative ipsBadge_large">
-                    Main <i class="fa fa-gavel"></i>
-                    </span>
-                    <span class="ipsBadge ipsBadge_positive ipsBadge_large">
-                    Test <i class="fa fa-check"></i>
-                    </span>
-                    <span class="ipsBadge ipsBadge_positive ipsBadge_large">
-                    Games <i class="fa fa-check"></i>
-                    </span>
-                    <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
-                    Build <i class="fa fa-remove"></i>
-                    </span>
-                    <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
-                    Dark Portal <i class="fa fa-remove"></i>
-                    </span>
+                    {{if $access->main}}
+                        <span class="ipsBadge ipsBadge_positive ipsBadge_large">
+                        Main <i class="fa fa-check"></i>
+                        </span>
+                    {{else}}
+                        <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
+                        Main <i class="fa fa-remove"></i>
+                        </span>
+                    {{endif}}
+                    {{if $access->test}}
+                        <span class="ipsBadge ipsBadge_positive ipsBadge_large">
+                        Test <i class="fa fa-check"></i>
+                        </span>
+                    {{else}}
+                        <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
+                        Test <i class="fa fa-remove"></i>
+                        </span>
+                    {{endif}}
+                    {{if $access->games}}
+                        <span class="ipsBadge ipsBadge_positive ipsBadge_large">
+                        Games <i class="fa fa-check"></i>
+                        </span>
+                    {{else}}
+                        <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
+                        Games <i class="fa fa-remove"></i>
+                        </span>
+                    {{endif}}
+                    {{if $access->build}}
+                        <span class="ipsBadge ipsBadge_positive ipsBadge_large">
+                        Build <i class="fa fa-check"></i>
+                        </span>
+                    {{else}}
+                        <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
+                        Build <i class="fa fa-remove"></i>
+                        </span>
+                    {{endif}}
+                    {{if $access->darkportal}}
+                        <span class="ipsBadge ipsBadge_style2 ipsBadge_large">
+                        Dark Portal <i class="fa fa-check"></i>
+                        </span>
+                    {{else}}
+                        <span class="ipsBadge ipsBadge_neutral ipsBadge_large">
+                        Dark Portal <i class="fa fa-remove"></i>
+                        </span>
+                    {{endif}}
                 </div>
             </li>
         </ul>

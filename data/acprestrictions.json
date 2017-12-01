@@ -1,0 +1,14 @@
+{
+    "gamepanel": [],
+    "console": {
+        "main": {
+            "main_manage": "main_manage"
+        },
+        "test": {
+            "test_manage": "test_manage"
+        },
+        "games": {
+            "games_manage": "games_manage"
+        }
+    }
+}

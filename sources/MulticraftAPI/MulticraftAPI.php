@@ -18,12 +18,13 @@ namespace IPS\gamepanel;
 
 class _MulticraftAPI
 {
-    private $key = '';
-    private $url = 'http://mcp.cardinalnetworks.com/api.php';
+    protected $key = 'P55R@CEciRwmiL';
+    protected $url = 'http://mcp.cardinalnetworks.com/api.php';
+    protected $user = 'NetworkAdmin';
 
-    private $lastResponse = '';
+    protected $lastResponse = '';
 
-    private $methods = array(
+    protected $methods = array(
             //User functions
             'listUsers'                 => array(),
             'findUsers'                 => array(array('name'=>'field', 'type'=>'array'), array('name'=>'value', 'type'=>'array')),

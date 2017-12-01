@@ -6,8 +6,8 @@
         }
     },
     "admin": {
-        "gamepanel": {
-            "default_controller": "",
+        "console": {
+            "default_controller": "main",
             "protected": 0
         }
     }
