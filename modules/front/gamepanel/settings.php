@@ -217,10 +217,18 @@ class _settings extends \IPS\Dispatcher\Controller
 			$row = \IPS\Db::i()->insert('gamepanel_players', array('ign' => NULL, 'uuid' => NULL, 'member_id' => \IPS\Member::loggedIn()->member_id));
 		}
 
-		$player = \IPS\gamepanel\Player::load(8);
+		$player = \IPS\gamepanel\Player::load($row['id']);
 		/* Build form */
 		$form = new \IPS\Helpers\Form;
-		$form->add( new \IPS\Helpers\Form\Text( 'gp_ign', $player->ign, TRUE));
+		if($row['ign'] != NULL)
+		{
+			$form->add( new \IPS\Helpers\Form\Text( 'gp_ign', $player->ign, TRUE, array('disabled' => TRUE)));
+		}
+		else
+		{
+			$form->add( new \IPS\Helpers\Form\Text( 'gp_ign', $player->ign, TRUE));
+		}
+		
 
 		/* Handle Submissions */
 		if ( $values = $form->values() )

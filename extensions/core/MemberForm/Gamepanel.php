@@ -49,16 +49,46 @@ class _Gamepanel
 	 * @return	void
 	 */
 	public function process( &$form, $member )
-	{		
-		$form->addHeader("Player Information");
-		$form->add( new \IPS\Helpers\Form\Text( 'Minecraft IGN' ) );
-		$form->add( new \IPS\Helpers\Form\Text( 'UUID' ) );
-		$form->addHeader("Whitelist");
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Main' ) );
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Test' ) );
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Games' ) );
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Build' ) );
-		$form->add( new \IPS\Helpers\Form\YesNo( 'Dark Portal' ) );
+	{	
+		try
+		{
+			$row = \IPS\Db::i()->select("*", "gamepanel_players",array('member_id=?', $member->member_id))->first();
+		}
+		catch(\UnderFlowException $e)
+		{
+			//!?
+		}
+		if($row != NULL)
+		{
+			$player = \IPS\gamepanel\Player::load($row['id']);
+		}
+
+		if($player != NULL)
+		{
+			$access = \IPS\Db::i()->select("*", "gamepanel_access", array('uuid=?', $row['uuid']))->first();
+			$access = \IPS\gamepanel\Access::load($access['id']);
+			$form->addHeader("Player Information");
+			$form->add( new \IPS\Helpers\Form\Text( 'Minecraft IGN', $player->ign, FALSE ) );
+			$form->add( new \IPS\Helpers\Form\Text( 'UUID', $player->uuid, FALSE, array('disabled' => TRUE) ) );
+			$form->addHeader("Whitelist");
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Main', $access->main, FALSE ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Test', $access->test, FALSE ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Games', $access->games, FALSE ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Build', $access->build, FALSE ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Dark Portal', $access->darkportal, FALSE ) );
+		}
+		else
+		{
+			$form->addHeader("Player Information");
+			$form->add( new \IPS\Helpers\Form\Text( 'Minecraft IGN' ) );
+			$form->add( new \IPS\Helpers\Form\Text( 'UUID' ) );
+			$form->addHeader("Whitelist");
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Main' ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Test' ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Games' ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Build' ) );
+			$form->add( new \IPS\Helpers\Form\YesNo( 'Dark Portal' ) );	
+		}
 	}
 	
 	/**
@@ -70,6 +100,6 @@ class _Gamepanel
 	 */
 	public function save( $values, &$member )
 	{
-		$member->example = $values['example'];	
+		$member->example = $values['example'];
 	}
 }
